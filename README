@@ -1,71 +1,7 @@
-Here I try to test the simplest possible functions of esi-for-rack.
-
-So far no luck.
-
-Seems like the request object passed to @app in vendor/plugins/esi-for-rack/lib/esi_for_rack/lookup.rb:25 is in some way flawed... 
-
-Can you make it work? 
-Here the backtrace:
+__A showcase app for esi-for-rack gem__
+To test this, you will need to install the gem:
 
 
-The error occurred while evaluating nil.merge
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/request.rb:381:in `parameters'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:1279:in `assign_shortcuts'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/base.rb:518:in `process_without_filters'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/filters.rb:606:in `process'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/rescue.rb:65:in `call_with_exception'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:91:in `dispatch'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:111:in `_call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:82:in `initialize'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:29:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:29:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:9:in `cache'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/query_cache.rb:28:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/activerecord-2.3.2/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
-    /Volumes/users/Users/roman/Desktop/esi_box/rack_esi/vendor/plugins/esi-for-rack/lib/esi_for_rack/lookup.rb:25:in `[]'
-    /Volumes/users/Users/roman/Desktop/esi_box/rack_esi/vendor/plugins/esi-for-rack/lib/esi_for_rack/node.rb:27:in `execute'
-    /Volumes/users/Users/roman/Desktop/esi_box/rack_esi/vendor/plugins/esi-for-rack/lib/esi_for_rack/node.rb:16:in `execute_in_place!'
-    /Volumes/users/Users/roman/Desktop/esi_box/rack_esi/vendor/plugins/esi-for-rack/lib/esi_for_rack/node.rb:124:in `process'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/nokogiri-1.3.2/lib/nokogiri/xml/node_set.rb:193:in `each'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/nokogiri-1.3.2/lib/nokogiri/xml/node_set.rb:192:in `upto'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/nokogiri-1.3.2/lib/nokogiri/xml/node_set.rb:192:in `each'
-    /Volumes/users/Users/roman/Desktop/esi_box/rack_esi/vendor/plugins/esi-for-rack/lib/esi_for_rack/node.rb:119:in `process'
-    /Volumes/users/Users/roman/Desktop/esi_box/rack_esi/vendor/plugins/esi-for-rack/lib/esi_for_rack/node.rb:117:in `loop'
-    /Volumes/users/Users/roman/Desktop/esi_box/rack_esi/vendor/plugins/esi-for-rack/lib/esi_for_rack/node.rb:117:in `process'
-    /Volumes/users/Users/roman/Desktop/esi_box/rack_esi/vendor/plugins/esi-for-rack/lib/esi_for_rack/node.rb:109:in `parse'
-    /Volumes/users/Users/roman/Desktop/esi_box/rack_esi/vendor/plugins/esi-for-rack/lib/esi_for_rack.rb:62:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rack-1.0.0/lib/rack/head.rb:9:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rack-1.0.0/lib/rack/methodoverride.rb:24:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/params_parser.rb:15:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/rewindable_input.rb:25:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/session/cookie_store.rb:93:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/reloader.rb:9:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/failsafe.rb:11:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rack-1.0.0/lib/rack/lock.rb:11:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rack-1.0.0/lib/rack/lock.rb:11:in `synchronize'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rack-1.0.0/lib/rack/lock.rb:11:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/actionpack-2.3.2/lib/action_controller/dispatcher.rb:106:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/rails/rack/static.rb:31:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rack-1.0.0/lib/rack/urlmap.rb:46:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rack-1.0.0/lib/rack/urlmap.rb:40:in `each'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rack-1.0.0/lib/rack/urlmap.rb:40:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/rails/rack/log_tailer.rb:17:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rack-1.0.0/lib/rack/content_length.rb:13:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rack-1.0.0/lib/rack/chunked.rb:15:in `call'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rack-1.0.0/lib/rack/handler/mongrel.rb:61:in `process'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rack-1.0.0/lib/rack/handler/mongrel.rb:34:in `run'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/commands/server.rb:111
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
-    /opt/ruby-enterprise-1.8.6-20090610/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
-    ./script/server:3
+sudo gem install joshbuddy-esi-for-rack -s http://gems.github.com
+
+
