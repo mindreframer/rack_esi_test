@@ -5,5 +5,5 @@ require 'esi_for_rack'
 Rails::Initializer.run do |config|
   config.plugins = [ :all ]
   config.time_zone = 'UTC'
-  config.middleware.use  EsiForRack
+  config.middleware.insert_before ActionController::Session::CookieStore, EsiForRack
 end
