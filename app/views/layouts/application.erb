@@ -15,8 +15,20 @@
   <body>
     <div class="container_16">
       <%#= render :partial => 'shared/header' %>
-      <esi:include src="/site/header"/>
+      <%#= esi_include '/site/header' %>
+      <%=  esi_include :laksjdlajsd, :onerror => :continue %>
       
+      <% esi_try do  %>
+        <% esi_attempt do %>
+          <%= esi_include '/site/$(QUERY_STRING{a})' %>
+        <% end %>
+        <% esi_except do %>
+          NO WAY!
+        <% end %>
+      <% end %>
+      
+      
+      <esi:vars><img src="$(QUERY_STRING{a})/hello.gif"/ ></esi:vars>
       <div class="clear"></div>
       
       <div class="grid_4">
